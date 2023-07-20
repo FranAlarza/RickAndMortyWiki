@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  CharacterView.swift
 //  Rick and Morty Wiki
 //
 //  Created by Francisco Javier Alarza on 20/7/23.
@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct CharacterView: View {
+    @ObservedObject var vm: CharactersViewModel = CharactersViewModel()
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -16,11 +17,14 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
+        .task {
+            await vm.getCharacters()
+        }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct CharacterView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        CharacterView()
     }
 }
