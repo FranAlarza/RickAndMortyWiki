@@ -21,4 +21,5 @@ enum AppImage: String {
     case rmHightlight = "rm_highlight"
     case rmPrincipal = "rm_principal"
     case rmCharacterIcon = "characters_icon"
+    case rmLetter = "rm_letter"
 }

@@ -16,16 +16,23 @@ struct CharacterView: View {
                 characterSection
                 Spacer()
             }
+            .background(Color.backgroundBlue)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Image(.rickIconTabbar)
                         .resizable()
                         .frame(width: 32, height: 32)
                 }
+                
+                ToolbarItem(placement: .principal) {
+                    Image(.rmLetter)
+                        .resizable()
+                        .frame(width: 140, height: 60)
+                }
             }
         }
         .task {
-            await vm.getCharacters()
+            await vm.getCharacters(page: vm.page)
         }
     }
     
@@ -55,9 +62,20 @@ struct CharacterView: View {
             }
             .padding(.horizontal, 16)
             ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
+                LazyHStack {
                     ForEach(vm.characters, id: \.id) { character in
-                        CharacterCell(urlImage: character.image ?? "", nombre: character.name ?? "", specie: character.species ?? "", status: character.status ?? "")
+                        NavigationLink {
+                            CharacterDetailView(character: character)
+                        } label: {
+                            CharacterCell(urlImage: character.image, nombre: character.name, specie: character.species, status: character.status)
+                                .onAppear {
+                                    if (vm.characters.isLast(character) || character.id % 20 == 0) {
+                                        Task {
+                                            await vm.getCharacters(page: vm.page)
+                                        }
+                                    }
+                                }
+                        }
                     }
                 }
             }

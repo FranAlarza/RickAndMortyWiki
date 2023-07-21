@@ -19,6 +19,13 @@ struct Rick_and_Morty_WikiApp: App {
                             Text("Characters")
                         }
                     }
+                LocationsView()
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "location.fill")
+                            Text("Locations")
+                        }
+                    }
             }
             .toolbar(.visible, for: .tabBar)
             .toolbarBackground(Color.mainBlue, for: .tabBar)

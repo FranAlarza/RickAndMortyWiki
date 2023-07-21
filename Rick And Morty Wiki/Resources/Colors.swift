@@ -10,4 +10,9 @@ import SwiftUI
 
 extension Color {
     static let mainBlue = Color("main_blue")
+    static let backgroundBlue = Color("background_blue")
+    static let yellowFeatureColor = Color("yellow_feature_color")
+    static let detailBlue = Color("deatail_blue")
+    static let greenInfo = Color("green_info")
+    static let pinkInfo = Color("pink_info")
 }

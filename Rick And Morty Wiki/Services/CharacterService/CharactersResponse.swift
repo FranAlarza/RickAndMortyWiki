@@ -21,7 +21,7 @@ struct Info: Codable {
 }
 
 // MARK: - Result
-struct CharactersResult: Codable {
+struct CharactersResult: Codable, Identifiable {
     let id: Int
     let name, status, species, type: String
     let gender: String

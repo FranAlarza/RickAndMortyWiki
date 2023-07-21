@@ -31,8 +31,10 @@ struct CharacterCell: View {
             }
             Text(nombre)
                 .bold()
+                .foregroundColor(.black)
             Text("\(specie), \(status)")
                 .font(.caption)
+                .foregroundColor(.black)
         }
     }
 }
