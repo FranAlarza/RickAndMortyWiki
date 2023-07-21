@@ -11,7 +11,24 @@ import SwiftUI
 struct Rick_and_Morty_WikiApp: App {
     var body: some Scene {
         WindowGroup {
-            CharacterView()
+            TabView {
+                CharacterView()
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "person.fill")
+                            Text("Characters")
+                        }
+                    }
+                LocationsView()
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "location.fill")
+                            Text("Locations")
+                        }
+                    }
+            }
+            .toolbar(.visible, for: .tabBar)
+            .toolbarBackground(Color.mainBlue, for: .tabBar)
         }
     }
 }
