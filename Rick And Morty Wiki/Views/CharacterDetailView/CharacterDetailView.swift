@@ -13,8 +13,9 @@ struct CharacterDetailView: View {
         ZStack {
             Text(character.name)
                 .foregroundColor(.black)
-                .opacity(0.5)
-                .font(.system(size: 50))
+                .opacity(0.1)
+                .font(.system(size: 80))
+                .bold()
             VStack {
                 AsyncImage(url: URL(string: character.image)) { image in
                     image
@@ -40,13 +41,23 @@ struct CharacterDetailView: View {
                     InfoLabel(feature: "Origine", featureDescription: character.origin.name, infoLabelType: .characters)
                     InfoLabel(feature: "Location", featureDescription: character.location.name, infoLabelType: .characters)
                 }
-                .border(Color.white, width: 1)
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color.white, lineWidth: 2)
+                )
                 .cornerRadius(16)
-                .padding(.horizontal, 16)
                 Spacer()
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.detailBlue)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Image(.rmLetter)
+                    .resizable()
+                    .frame(width: 140, height: 60)
+            }
         }
     }
 }

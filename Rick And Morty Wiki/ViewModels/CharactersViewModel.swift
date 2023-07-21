@@ -12,6 +12,7 @@ final class CharactersViewModel: ObservableObject {
     @Published var characters: [CharactersResult] = []
     @Published var charactersError: Bool = false
     @Published var page: Int = 1
+    @Published var charactersInLocations: [CharactersResult] = []
     
     private var storedCharacters: [CharactersResult] = []
     private let service: CharactersServiceProtocol
@@ -26,6 +27,7 @@ final class CharactersViewModel: ObservableObject {
     
     func getCharacters(page: Int) async {
         storedCharacters = loadCharactersFromRepository()
+        print("\(storedCharacters.count)")
         if storedCharacters.count < 20 * page  {
             print("\(storedCharacters.count)")
             await fetchCharactersFromService(page: page)
@@ -63,4 +65,24 @@ final class CharactersViewModel: ObservableObject {
             charactersError = true
         }
     }
+    
+    @MainActor
+    func getResidents(residents: [String]) async {
+        var ids: [String] = []
+        residents.forEach { path in
+            if let url = URL(string: path) {
+                ids.append(url.lastPathComponent)
+            }
+        }
+        print(ids)
+        do {
+            for id in ids {
+                let result = try await service.getCharacterDetail(request: .characterDetail(id: id))
+                charactersInLocations.append(result)
+            }
+        } catch {
+            charactersError = true
+        }
+    }
+    
 }

@@ -9,4 +9,6 @@ import Foundation
 struct StorageKeys {
     static let CHARACTERS_KEY = "CHARACTERS"
     static let MAX_CHARACTERS_KEY = "MAX_CHARACTERS"
+    static let LOCATIONS_KEY = "LOCATIONS_KEY"
+    static let INFO_LOCATIONS_KEY = "INFO_LOCATIONS_KEY"
 }

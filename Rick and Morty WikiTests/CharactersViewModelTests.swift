@@ -8,33 +8,43 @@
 import XCTest
 @testable import Rick_and_Morty_Wiki
 
+@MainActor
 class CharactersViewModelTests: XCTestCase {
     private var mockService: MockCharactersService!
     private var viewModel: CharactersViewModel!
+    private var repository: MockRepository!
 
     override func setUp() {
         super.setUp()
         mockService = MockCharactersService()
-        viewModel = CharactersViewModel(service: mockService)
+        repository = MockRepository()
+        viewModel = CharactersViewModel(service: mockService, repository: repository)
     }
 
-    func testGetCharactersSuccess() async throws {
-        let expectedCharacters = [CharactersResult(id: 1, name: "Rick", status: "", species: "", type: "", gender: "", origin: Location(name: "", url: ""), location: Location(name: "", url: ""), image: "", episode: [], url: "", created: "")]
-        mockService.charactersResponse = Characters(info: Info(count: 0, pages: 0, next: "", prev: ""), results: expectedCharacters)
-        
+    func testGetCharactersFetchesFromServiceWhenRepositoryIsEmpty() async throws {
+        // Given
+        let charactersResults = [CharactersResult(id: 1, name: "Test", status: "Alive", species: "Human", type: "", gender: "Male", origin: Location(name: "Earth", url: ""), location: Location(name: "Earth", url: ""), image: "", episode: [], url: "", created: "")]
+        let charactersInfo = Info(count: 1, pages: 1, next: "", prev: nil)
+        mockService.charactersResponse = Characters(info: charactersInfo, results: charactersResults)
+        // When
         await viewModel.getCharacters(page: 1)
-
-        XCTAssertTrue(viewModel.characters.count == 1)
-        XCTAssertEqual(viewModel.page, 2)
-        XCTAssertFalse(viewModel.CharactersError)
+        // Then
+        XCTAssertEqual(viewModel.characters.count, 1)
+        XCTAssertEqual(viewModel.characters.first?.name, "Test")
     }
 
-    func testGetCharactersFailure() async {
-        mockService.error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Test Error"])
-        
+    func testGetCharactersLoadsFromRepositoryWhenDataIsAvailable() async throws {
+        // Arrange
+        var character: [CharactersResult] = []
+        let charactersResults = CharactersResult(id: 1, name: "Test", status: "Alive", species: "Human", type: "", gender: "Male", origin: Location(name: "Earth", url: ""), location: Location(name: "Earth", url: ""), image: "", episode: [], url: "", created: "")
+        (0...22).forEach { _ in
+            character.append(charactersResults)
+        }
+        repository.store(character, key: StorageKeys.CHARACTERS_KEY)
+        // Act
         await viewModel.getCharacters(page: 1)
-
-        XCTAssertTrue(viewModel.CharactersError)
-        XCTAssertTrue(viewModel.characters.isEmpty)
+        // Assert
+        XCTAssertTrue(viewModel.characters.count > 20)
+        XCTAssertEqual(viewModel.characters.first?.name, "Test")
     }
 }

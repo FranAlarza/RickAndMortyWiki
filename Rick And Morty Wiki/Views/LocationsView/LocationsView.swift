@@ -10,23 +10,25 @@ import SwiftUI
 struct LocationsView: View {
     @ObservedObject var vm: LocationsViewModel = LocationsViewModel()
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            LazyVStack {
-                ForEach(vm.locations, id: \.id) { location in
-                    LocationCell(location: location)
-                        .onAppear {
-                            if (vm.locations.isLast(location)) {
-                                Task {
-                                    await vm.getLocations(page: vm.page)
-                                }
-                            }
-                        }
+        NavigationStack {
+            ScrollView(showsIndicators: false) {
+                LazyVStack {
+                    ForEach(vm.locations, id: \.id) { location in
+                        LocationCell(location: location)
+                    }
+                }
+                .padding(8)
+                .task {
+                    await vm.getInitialData()
                 }
             }
-            .padding(8)
-            .task {
-                await vm.getLocations(page: vm.page)
-        }
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Image(.rmLetter)
+                        .resizable()
+                        .frame(width: 140, height: 60)
+                }
+            }
         }
     }
 }

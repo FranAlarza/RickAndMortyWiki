@@ -10,13 +10,13 @@ import Foundation
 // MARK: - Character
 struct Characters: Codable {
     let info: Info
-    let results: [CharactersResult]
+    var results: [CharactersResult]
 }
 
 // MARK: - Info
 struct Info: Codable {
     let count, pages: Int
-    let next: String
+    let next: String?
     let prev: String?
 }
 
