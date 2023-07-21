@@ -18,6 +18,12 @@ struct LocationCell: View {
             InfoLabel(feature: "Type", featureDescription: location.type, infoLabelType: .locations)
             InfoLabel(feature: "Dimension", featureDescription: location.dimension, infoLabelType: .locations)
             InfoLabel(feature: "Number Of Residents", featureDescription: location.residents.count.toString, infoLabelType: .locations)
+            NavigationLink {
+                ResidentsView(paths: location.residents)
+                    .environmentObject(CharactersViewModel())
+            } label: {
+                Text("See Residents")
+            }
         }
         .padding()
         .background(
