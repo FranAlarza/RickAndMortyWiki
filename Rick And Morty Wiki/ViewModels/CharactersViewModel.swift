@@ -10,10 +10,12 @@ import Foundation
 @MainActor
 final class CharactersViewModel: ObservableObject {
     @Published var characters: [CharactersResult] = []
-    @Published var charactersError: Bool = false
-    @Published var page: Int = 1
     @Published var charactersInLocations: [CharactersResult] = []
+    @Published var searchedCharacters: [CharactersResult] = []
+    @Published var charactersError: Bool = false
     @Published var charactersLocationsError: Bool = false
+    @Published var searchCharactersError: Bool = false
+    @Published var page: Int = 1
     
     private var storedCharacters: [CharactersResult] = []
     private let service: CharactersServiceProtocol
@@ -22,15 +24,12 @@ final class CharactersViewModel: ObservableObject {
     init(service: CharactersServiceProtocol = CharactersService(), repository: Repository = AppRepository.shared) {
         self.service = service
         self.repository = repository
-        //repository.delete(key: StorageKeys.CHARACTERS_KEY)
     }
     
-    
+    /// Ensure to call the api only when we need it
     func getCharacters(page: Int) async {
         storedCharacters = loadCharactersFromRepository()
-        print("\(storedCharacters.count)")
         if storedCharacters.count < 20 * page  {
-            print("\(storedCharacters.count)")
             await fetchCharactersFromService(page: page)
         } else {
             self.page += 1
@@ -38,6 +37,16 @@ final class CharactersViewModel: ObservableObject {
         }
     }
     
+    func searchCharacter(query: String) async throws {
+        do {
+            searchedCharacters = try await service.searchCharacter(request: .filteredCharacters(name: query)).results
+            print("***** GetQuerySuccess *****:")
+        } catch {
+            searchCharactersError = true
+        }
+    }
+    
+    // MARK: - Helper Functions
     private func loadCharactersFromRepository() -> [CharactersResult] {
         return repository.load(forKey: StorageKeys.CHARACTERS_KEY, as: [CharactersResult].self) ?? []
     }
@@ -67,7 +76,6 @@ final class CharactersViewModel: ObservableObject {
         }
     }
     
-    @MainActor
     func getResidents(residents: [String]) async {
         var ids: [String] = []
         residents.forEach { path in
@@ -75,7 +83,6 @@ final class CharactersViewModel: ObservableObject {
                 ids.append(url.lastPathComponent)
             }
         }
-        print(ids)
         do {
             for id in ids {
                 let result = try await service.getCharacterDetail(request: .characterDetail(id: id))

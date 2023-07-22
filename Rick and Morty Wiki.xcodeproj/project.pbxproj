@@ -152,7 +152,6 @@
 		981EBF2C2A69D70000F6F6A4 /* CharacterView */ = {
 			isa = PBXGroup;
 			children = (
-				980FEB682A69E2B200C6ADF7 /* CharacterDetailView */,
 				987A639F2A699D42005209BB /* CharacterView.swift */,
 				988448752A69D736007785D5 /* CharacterCell.swift */,
 			);
@@ -244,12 +243,12 @@
 		987A639C2A699D42005209BB /* Rick and Morty Wiki */ = {
 			isa = PBXGroup;
 			children = (
-				980FEB6B2A69EA0000C6ADF7 /* Commons */,
 				98D8F9792A69C2B6006136A4 /* App */,
 				98D8F9752A69C03B006136A4 /* Views */,
 				98D8F9762A69C04B006136A4 /* ViewModels */,
 				98D8F97A2A69C2C1006136A4 /* Data */,
 				98D8F98D2A69C423006136A4 /* Services */,
+				980FEB6B2A69EA0000C6ADF7 /* Commons */,
 				98D8F97B2A69C2CC006136A4 /* Resources */,
 				987A63A12A699D42005209BB /* Assets.xcassets */,
 				987A63A32A699D42005209BB /* Preview Content */,
@@ -278,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				981EBF2C2A69D70000F6F6A4 /* CharacterView */,
+				980FEB682A69E2B200C6ADF7 /* CharacterDetailView */,
 				98238E8E2A6A91A400FA2702 /* LocationsView */,
 				9872556A2A6B501500E0774A /* FavoritesView */,
 			);

@@ -10,6 +10,7 @@ import Foundation
 protocol CharactersServiceProtocol {
     func getCharacters(request: CharactersRequest) async throws -> Characters
     func getCharacterDetail(request: CharactersRequest) async throws -> CharactersResult
+    func searchCharacter(request: CharactersRequest) async throws -> Characters
 }
 
 final class CharactersService: CharactersServiceProtocol {
@@ -25,6 +26,10 @@ final class CharactersService: CharactersServiceProtocol {
     }
     
     func getCharacterDetail(request: CharactersRequest) async throws -> CharactersResult {
+        try await networkRequester.doRequest(request: request)
+    }
+    
+    func searchCharacter(request: CharactersRequest) async throws -> Characters {
         try await networkRequester.doRequest(request: request)
     }
 }
