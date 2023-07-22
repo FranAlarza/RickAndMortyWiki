@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CharacterDetailView: View {
     let character: CharactersResult
+    @State var isFavorite = false
     var body: some View {
         ZStack {
             Text(character.name)
@@ -50,6 +51,9 @@ struct CharacterDetailView: View {
                 Spacer()
             }
         }
+        .onAppear {
+            isFavorite = FavoriteManager.shared.checkIfIsFavorite(character: character)
+        }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.detailBlue)
         .toolbar {
@@ -57,6 +61,19 @@ struct CharacterDetailView: View {
                 Image(.rmLetter)
                     .resizable()
                     .frame(width: 140, height: 60)
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    isFavorite
+                    ? FavoriteManager.shared.deleteFavorite(character: character)
+                    : FavoriteManager.shared.saveFavorite(character: character)
+                    isFavorite.toggle()
+                } label: {
+                    Image(systemName: isFavorite ? "heart.fill" : "heart")
+                        .resizable()
+                        .foregroundColor(.white)
+                        .frame(width: 24, height: 24)
+                }
             }
         }
     }
