@@ -8,38 +8,45 @@
 import SwiftUI
 
 struct FavoritesView: View {
-    @State var favoritesCharacters: [CharactersResult] = FavoriteManager.shared.loadFavorites()
+    @EnvironmentObject var vm: FavoriteManager
+    let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
     var body: some View {
-        ScrollView {
-            VStack {
-                ForEach(favoritesCharacters) { character in
-                    HStack {
+        ScrollView(showsIndicators: false) {
+            if vm.favorites.count != 0 {
+                LazyVGrid(columns: columns) {
+                    ForEach(vm.favorites) { character in
                         AsyncImage(url: URL(string: character.image)) { image in
                             image
                                 .resizable()
                                 .frame(width: 100, height: 100)
                                 .cornerRadius(50)
+                                .contextMenu {
+                                    Button {
+                                        FavoriteManager.shared.deleteFavorite(character: character)
+                                    } label: {
+                                        Text("Eliminar")
+                                        Image(systemName: "trash")
+                                    }
+                                    
+                                }
                         } placeholder: {
                             ProgressView()
                         }
-                        Text(character.name)
                     }
                 }
+            } else {
+                VStack {
+                    Spacer()
+                    Image(.rmEmptyView)
+                        .resizable()
+                        .frame(width: 200, height: 300)
+                    Text("Upsss...Any favorites yet")
+                    Spacer()
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Image(.rickIconTabbar)
-                    .resizable()
-                    .frame(width: 32, height: 32)
-            }
-            
-            ToolbarItem(placement: .principal) {
-                Image(.rmLetter)
-                    .resizable()
-                    .frame(width: 140, height: 60)
-            }
-    }
+        .frame(width: .infinity, height: .infinity)
     }
 }
 

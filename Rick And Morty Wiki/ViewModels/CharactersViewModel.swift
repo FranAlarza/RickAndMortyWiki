@@ -13,6 +13,7 @@ final class CharactersViewModel: ObservableObject {
     @Published var charactersError: Bool = false
     @Published var page: Int = 1
     @Published var charactersInLocations: [CharactersResult] = []
+    @Published var charactersLocationsError: Bool = false
     
     private var storedCharacters: [CharactersResult] = []
     private let service: CharactersServiceProtocol
@@ -81,7 +82,7 @@ final class CharactersViewModel: ObservableObject {
                 charactersInLocations.append(result)
             }
         } catch {
-            charactersError = true
+            charactersLocationsError = true
         }
     }
     

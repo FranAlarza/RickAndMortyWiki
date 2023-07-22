@@ -39,7 +39,6 @@
 		98238EB32A6AD71700FA2702 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D8F9872A69C3DC006136A4 /* APIError.swift */; };
 		987255692A6AFD7D00E0774A /* ResidentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987255682A6AFD7D00E0774A /* ResidentsView.swift */; };
 		9872556C2A6B503B00E0774A /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9872556B2A6B503B00E0774A /* FavoritesView.swift */; };
-		9872556E2A6B505C00E0774A /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9872556D2A6B505C00E0774A /* FavoritesViewModel.swift */; };
 		987255712A6B52D200E0774A /* FavoriteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987255702A6B52D200E0774A /* FavoriteManager.swift */; };
 		987A639E2A699D42005209BB /* Rick_and_Morty_WikiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987A639D2A699D42005209BB /* Rick_and_Morty_WikiApp.swift */; };
 		987A63A02A699D42005209BB /* CharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 987A639F2A699D42005209BB /* CharacterView.swift */; };
@@ -58,6 +57,7 @@
 		98D8F9902A69C441006136A4 /* CharacterRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D8F98F2A69C441006136A4 /* CharacterRequest.swift */; };
 		98D8F9922A69C496006136A4 /* CharactersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D8F9912A69C496006136A4 /* CharactersResponse.swift */; };
 		98D8F9942A69C4C2006136A4 /* CharacterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D8F9932A69C4C2006136A4 /* CharacterService.swift */; };
+		98DD1BDB2A6BF12A00F13675 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98DD1BDA2A6BF12A00F13675 /* SplashView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,7 +90,6 @@
 		987255652A6AE0B200E0774A /* Rick and Morty Wiki.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Rick and Morty Wiki.xctestplan"; sourceTree = "<group>"; };
 		987255682A6AFD7D00E0774A /* ResidentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ResidentsView.swift; path = "Rick and Morty Wiki/Views/LocationsView/ResidentsView.swift"; sourceTree = SOURCE_ROOT; };
 		9872556B2A6B503B00E0774A /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoritesView.swift; path = "Rick And Morty Wiki/Views/FavoritesView/FavoritesView.swift"; sourceTree = SOURCE_ROOT; };
-		9872556D2A6B505C00E0774A /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoritesViewModel.swift; path = "Rick And Morty Wiki/ViewModels/FavoritesViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		987255702A6B52D200E0774A /* FavoriteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoriteManager.swift; path = "Rick And Morty Wiki/Commons/Managers/FavoriteManager.swift"; sourceTree = SOURCE_ROOT; };
 		987A639A2A699D42005209BB /* Rick and Morty Wiki.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rick and Morty Wiki.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		987A639D2A699D42005209BB /* Rick_and_Morty_WikiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rick_and_Morty_WikiApp.swift; sourceTree = "<group>"; };
@@ -111,6 +110,7 @@
 		98D8F98F2A69C441006136A4 /* CharacterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacterRequest.swift; path = "Rick And Morty Wiki/Services/CharacterService/CharacterRequest.swift"; sourceTree = SOURCE_ROOT; };
 		98D8F9912A69C496006136A4 /* CharactersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharactersResponse.swift; path = "Rick And Morty Wiki/Services/CharacterService/CharactersResponse.swift"; sourceTree = SOURCE_ROOT; };
 		98D8F9932A69C4C2006136A4 /* CharacterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacterService.swift; path = "Rick And Morty Wiki/Services/CharacterService/CharacterService.swift"; sourceTree = SOURCE_ROOT; };
+		98DD1BDA2A6BF12A00F13675 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SplashView.swift; path = "Rick And Morty Wiki/App/SplashView.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +152,7 @@
 		981EBF2C2A69D70000F6F6A4 /* CharacterView */ = {
 			isa = PBXGroup;
 			children = (
+				980FEB682A69E2B200C6ADF7 /* CharacterDetailView */,
 				987A639F2A699D42005209BB /* CharacterView.swift */,
 				988448752A69D736007785D5 /* CharacterCell.swift */,
 			);
@@ -276,10 +277,9 @@
 		98D8F9752A69C03B006136A4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9872556A2A6B501500E0774A /* FavoritesView */,
-				98238E8E2A6A91A400FA2702 /* LocationsView */,
-				980FEB682A69E2B200C6ADF7 /* CharacterDetailView */,
 				981EBF2C2A69D70000F6F6A4 /* CharacterView */,
+				98238E8E2A6A91A400FA2702 /* LocationsView */,
+				9872556A2A6B501500E0774A /* FavoritesView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -289,7 +289,6 @@
 			children = (
 				98D8F9772A69C2AE006136A4 /* CharactersViewModel.swift */,
 				98238E932A6A91EF00FA2702 /* LocationsViewModel.swift */,
-				9872556D2A6B505C00E0774A /* FavoritesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -298,6 +297,7 @@
 			isa = PBXGroup;
 			children = (
 				987A639D2A699D42005209BB /* Rick_and_Morty_WikiApp.swift */,
+				98DD1BDA2A6BF12A00F13675 /* SplashView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -485,8 +485,8 @@
 				987A639E2A699D42005209BB /* Rick_and_Morty_WikiApp.swift in Sources */,
 				98238E8B2A6A8D7E00FA2702 /* LocationResponse.swift in Sources */,
 				98238E922A6A91D100FA2702 /* LocationsView.swift in Sources */,
+				98DD1BDB2A6BF12A00F13675 /* SplashView.swift in Sources */,
 				98D8F9842A69C3A1006136A4 /* APIRequest.swift in Sources */,
-				9872556E2A6B505C00E0774A /* FavoritesViewModel.swift in Sources */,
 				98D8F9922A69C496006136A4 /* CharactersResponse.swift in Sources */,
 				98238E892A6A8D6E00FA2702 /* LocationRequest.swift in Sources */,
 				98238E862A6A611E00FA2702 /* InfoLabel.swift in Sources */,
