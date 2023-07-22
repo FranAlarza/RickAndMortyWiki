@@ -26,6 +26,13 @@ struct Rick_and_Morty_WikiApp: App {
                             Text("Locations")
                         }
                     }
+                FavoritesView()
+                    .tabItem {
+                        VStack {
+                            Image(systemName: "heart.fill")
+                            Text("Favorites")
+                        }
+                    }
             }
             .toolbar(.visible, for: .tabBar)
             .toolbarBackground(Color.mainBlue, for: .tabBar)

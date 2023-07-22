@@ -88,7 +88,7 @@
 		98238EA22A6AA2AB00FA2702 /* MockCharactersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCharactersService.swift; sourceTree = "<group>"; };
 		98238EA82A6AD31C00FA2702 /* MockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRepository.swift; sourceTree = "<group>"; };
 		987255652A6AE0B200E0774A /* Rick and Morty Wiki.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Rick and Morty Wiki.xctestplan"; sourceTree = "<group>"; };
-		987255682A6AFD7D00E0774A /* ResidentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ResidentsView.swift; path = "Rick And Morty Wiki/Views/CharacterView/ResidentsView.swift"; sourceTree = SOURCE_ROOT; };
+		987255682A6AFD7D00E0774A /* ResidentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ResidentsView.swift; path = "Rick and Morty Wiki/Views/LocationsView/ResidentsView.swift"; sourceTree = SOURCE_ROOT; };
 		9872556B2A6B503B00E0774A /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoritesView.swift; path = "Rick And Morty Wiki/Views/FavoritesView/FavoritesView.swift"; sourceTree = SOURCE_ROOT; };
 		9872556D2A6B505C00E0774A /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoritesViewModel.swift; path = "Rick And Morty Wiki/ViewModels/FavoritesViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		987255702A6B52D200E0774A /* FavoriteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FavoriteManager.swift; path = "Rick And Morty Wiki/Commons/Managers/FavoriteManager.swift"; sourceTree = SOURCE_ROOT; };
@@ -154,7 +154,6 @@
 			children = (
 				987A639F2A699D42005209BB /* CharacterView.swift */,
 				988448752A69D736007785D5 /* CharacterCell.swift */,
-				987255682A6AFD7D00E0774A /* ResidentsView.swift */,
 			);
 			path = CharacterView;
 			sourceTree = "<group>";
@@ -174,6 +173,7 @@
 			children = (
 				98238E912A6A91D100FA2702 /* LocationsView.swift */,
 				98238E972A6A983B00FA2702 /* LocationCell.swift */,
+				987255682A6AFD7D00E0774A /* ResidentsView.swift */,
 			);
 			path = LocationsView;
 			sourceTree = "<group>";
