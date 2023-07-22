@@ -112,7 +112,7 @@
 		98D8F9912A69C496006136A4 /* CharactersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharactersResponse.swift; path = "Rick And Morty Wiki/Services/CharacterService/CharactersResponse.swift"; sourceTree = SOURCE_ROOT; };
 		98D8F9932A69C4C2006136A4 /* CharacterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharacterService.swift; path = "Rick And Morty Wiki/Services/CharacterService/CharacterService.swift"; sourceTree = SOURCE_ROOT; };
 		98DD1BDA2A6BF12A00F13675 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SplashView.swift; path = "Rick And Morty Wiki/App/SplashView.swift"; sourceTree = SOURCE_ROOT; };
-		98DD1BDE2A6C9E3E00F13675 /* readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = readme.md; path = "Rick And Morty Wiki/readme.md"; sourceTree = SOURCE_ROOT; };
+		98DD1BDE2A6C9E3E00F13675 /* readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = readme.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +228,7 @@
 			children = (
 				987255652A6AE0B200E0774A /* Rick and Morty Wiki.xctestplan */,
 				987A639C2A699D42005209BB /* Rick and Morty Wiki */,
+				98DD1BDE2A6C9E3E00F13675 /* readme.md */,
 				987A63AD2A699D42005209BB /* Rick and Morty WikiTests */,
 				987A639B2A699D42005209BB /* Products */,
 			);
@@ -254,7 +255,6 @@
 				98D8F97B2A69C2CC006136A4 /* Resources */,
 				987A63A12A699D42005209BB /* Assets.xcassets */,
 				987A63A32A699D42005209BB /* Preview Content */,
-				98DD1BDE2A6C9E3E00F13675 /* readme.md */,
 			);
 			path = "Rick and Morty Wiki";
 			sourceTree = "<group>";
