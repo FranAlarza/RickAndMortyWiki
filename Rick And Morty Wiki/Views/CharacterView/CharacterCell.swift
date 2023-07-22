@@ -19,11 +19,11 @@ struct CharacterCell: View {
                 image
                     .resizable()
                     .frame(width: 150)
-                    .frame(maxHeight: .infinity)
+                    .frame(maxHeight: 200)
                     .cornerRadius(16)
                     .padding(.horizontal, 16)
             } placeholder: {
-                Image("")
+                Image(systemName: "x.circle")
                     .background(Color.backgroundBlue)
                     .frame(width: 150)
                     .frame(maxHeight: .infinity)

@@ -13,7 +13,6 @@ struct Rick_and_Morty_WikiApp: App {
     var body: some Scene {
         WindowGroup {
             if isAppLoaded {
-                NavigationStack {
                     TabView {
                         CharacterView()
                             .tabItem {
@@ -37,7 +36,6 @@ struct Rick_and_Morty_WikiApp: App {
                                 }
                             }
                     }
-                }
                 .environmentObject(FavoriteManager.shared)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {

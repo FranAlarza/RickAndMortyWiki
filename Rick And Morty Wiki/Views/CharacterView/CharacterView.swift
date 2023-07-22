@@ -9,21 +9,43 @@ import SwiftUI
 
 struct CharacterView: View {
     @ObservedObject var vm: CharactersViewModel = CharactersViewModel()
+    @State var query: String = ""
     var body: some View {
         NavigationStack {
             VStack {
                 header
                 characterSection
-                Spacer()
             }
             .background(Color.backgroundBlue)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Image(.rickIconTabbar)
-                        .resizable()
-                        .frame(width: 32, height: 32)
+            .task {
+                await vm.getCharacters(page: vm.page)
+            }
+            .searchable(text: $query) {
+                ForEach(vm.searchedCharacters) { sugestion in
+                    NavigationLink {
+                        CharacterDetailView(character: sugestion)
+                    } label: {
+                        HStack(spacing: 16) {
+                            AsyncImage(url: URL(string: sugestion.image)) { image in
+                                image
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
+                                    .cornerRadius(25)
+                            } placeholder: {
+                                ProgressView()
+                            }
+                            Text(sugestion.name)
+                                .foregroundColor(.black)
+                        }
+                    }
                 }
-                
+            }
+            .onChange(of: query, perform: { newValue in
+                Task {
+                    try await vm.searchCharacter(query: newValue)
+                }
+        })
+            .toolbar {
                 ToolbarItem(placement: .principal) {
                     Image(.rmLetter)
                         .resizable()
@@ -31,23 +53,21 @@ struct CharacterView: View {
                 }
             }
         }
-        .task {
-            await vm.getCharacters(page: vm.page)
-        }
     }
     
     var header: some View {
         VStack {
             Image(.rmHightlight)
                 .resizable()
-                .frame(width: 230, height: 170)
+                .frame(width: 230, height: 130)
                 .foregroundColor(.accentColor)
                 .offset(x: 0, y: 25)
             Image(.rmPrincipal)
                 .resizable()
-                .frame(height: 170)
+                .frame(height: 140)
                 .cornerRadius(16)
                 .padding()
+            
         }
     }
     

@@ -10,10 +10,12 @@ import Foundation
 @MainActor
 final class CharactersViewModel: ObservableObject {
     @Published var characters: [CharactersResult] = []
-    @Published var charactersError: Bool = false
-    @Published var page: Int = 1
     @Published var charactersInLocations: [CharactersResult] = []
+    @Published var searchedCharacters: [CharactersResult] = []
+    @Published var charactersError: Bool = false
     @Published var charactersLocationsError: Bool = false
+    @Published var searchCharactersError: Bool = false
+    @Published var page: Int = 1
     
     private var storedCharacters: [CharactersResult] = []
     private let service: CharactersServiceProtocol
@@ -35,6 +37,15 @@ final class CharactersViewModel: ObservableObject {
         } else {
             self.page += 1
             characters = storedCharacters
+        }
+    }
+    
+    func searchCharacter(query: String) async throws {
+        do {
+            searchedCharacters = try await service.searchCharacter(request: .filteredCharacters(name: query)).results
+            print("***** GetQuerySuccess *****:")
+        } catch {
+            searchCharactersError = true
         }
     }
     
