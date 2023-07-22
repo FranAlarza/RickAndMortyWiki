@@ -27,7 +27,7 @@ final class LocationsViewModel: ObservableObject {
     @MainActor
     func getInitialData() async {
         let repositoryLocations = repository.load(forKey: StorageKeys.LOCATIONS_KEY, as: [LocationsResult].self)
-        if (repositoryLocations?.count != locationsInfo?.count) {
+        if (repositoryLocations?.count != locationsInfo?.count || repositoryLocations == nil) {
             do {
                 let result = try await service.getLocations(request: .locations(page: pages.toString))
                 repository.store(result.info, key: StorageKeys.INFO_LOCATIONS_KEY)

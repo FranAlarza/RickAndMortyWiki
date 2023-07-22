@@ -23,7 +23,8 @@ struct CharacterCell: View {
                     .cornerRadius(16)
                     .padding(.horizontal, 16)
             } placeholder: {
-                Rectangle()
+                Image("")
+                    .background(Color.backgroundBlue)
                     .frame(width: 150)
                     .frame(maxHeight: .infinity)
                     .cornerRadius(16)

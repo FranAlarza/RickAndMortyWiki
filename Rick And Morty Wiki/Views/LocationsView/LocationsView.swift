@@ -10,24 +10,15 @@ import SwiftUI
 struct LocationsView: View {
     @ObservedObject var vm: LocationsViewModel = LocationsViewModel()
     var body: some View {
-        NavigationStack {
-            ScrollView(showsIndicators: false) {
-                LazyVStack {
-                    ForEach(vm.locations, id: \.id) { location in
-                        LocationCell(location: location)
-                    }
-                }
-                .padding(8)
-                .task {
-                    await vm.getInitialData()
+        ScrollView(showsIndicators: false) {
+            LazyVStack {
+                ForEach(vm.locations, id: \.id) { location in
+                    LocationCell(location: location)
                 }
             }
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Image(.rmLetter)
-                        .resizable()
-                        .frame(width: 140, height: 60)
-                }
+            .padding(8)
+            .task {
+                await vm.getInitialData()
             }
         }
     }

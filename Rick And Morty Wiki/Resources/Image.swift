@@ -22,4 +22,5 @@ enum AppImage: String {
     case rmPrincipal = "rm_principal"
     case rmCharacterIcon = "characters_icon"
     case rmLetter = "rm_letter"
+    case rmEmptyView = "rick_and_morty_empty"
 }

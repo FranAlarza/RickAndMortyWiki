@@ -34,16 +34,16 @@ class CharactersViewModelTests: XCTestCase {
     }
 
     func testGetCharactersLoadsFromRepositoryWhenDataIsAvailable() async throws {
-        // Arrange
+        // Given
         var character: [CharactersResult] = []
         let charactersResults = CharactersResult(id: 1, name: "Test", status: "Alive", species: "Human", type: "", gender: "Male", origin: Location(name: "Earth", url: ""), location: Location(name: "Earth", url: ""), image: "", episode: [], url: "", created: "")
         (0...22).forEach { _ in
             character.append(charactersResults)
         }
         repository.store(character, key: StorageKeys.CHARACTERS_KEY)
-        // Act
+        // When
         await viewModel.getCharacters(page: 1)
-        // Assert
+        // Then
         XCTAssertTrue(viewModel.characters.count > 20)
         XCTAssertEqual(viewModel.characters.first?.name, "Test")
     }

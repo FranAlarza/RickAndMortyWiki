@@ -23,6 +23,13 @@ struct LocationCell: View {
                     .environmentObject(CharactersViewModel())
             } label: {
                 Text("See Residents")
+                    .padding(32)
+                    .frame(height: 24)
+                    .foregroundColor(Color.white)
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(Color.detailBlue)
+                    )
             }
         }
         .padding()
